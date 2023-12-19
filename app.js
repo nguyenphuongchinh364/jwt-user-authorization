@@ -2,27 +2,18 @@ require("dotenv").config();
 require("./src/config/database").connect();
 const express = require("express");
 const app = express();
-
-
-
-
 // Middleware
 app.use(express.json({ limit: "50mb" }));
-
-// Import các modules để quản lý routes và logic
-const authMiddleware = require("./src/middlewares/authMiddleware");
-const adminMiddleware = require("./src/middlewares/adminMiddleware");
-const userController = require("./src/controllers/userController");
-const adminController = require("./src/controllers/adminController");
-
 // Routes
 const userRoutes = require("./src/routers/user");
 const adminRoutes = require("./src/routers/admin");
 const authRoutes = require("./src/routers/auth");
+const staffRoutes = require("./src/routers/staff")
 
 app.use("/user", userRoutes);
 app.use("/admin", adminRoutes);
 app.use("/auth", authRoutes);
+app.use("/staff", staffRoutes)
 
 
 
